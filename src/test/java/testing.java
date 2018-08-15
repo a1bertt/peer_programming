@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class testing {
@@ -29,6 +31,7 @@ public class testing {
 
     @After
     public void teardown() {
+
         driver.quit();
     }
 
@@ -39,27 +42,20 @@ public class testing {
 
     @Test
     public void methodtest(){
-
         driver.get("http://newtours.demoaut.com/mercurywelcome.php");
         home homepage = PageFactory.initElements(driver, home.class);
         homepage.register();
 
         register newuserreg = PageFactory.initElements(driver, register.class);
         newuserreg.newuser();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         login userlogin = PageFactory.initElements(driver, login.class);
-        userlogin.loginuserdetails();
+        userlogin.loginuserdetails(driver);
 
         test = reports.startTest("Mercury Tours");
         test.log(LogStatus.INFO, "Browser started");
-        test.log(LogStatus.PASS, "User Register and Logged-in");
-
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        test.log(LogStatus.PASS, "User Register and Log-in");
     }
 
 }

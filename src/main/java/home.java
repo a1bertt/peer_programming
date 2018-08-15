@@ -8,6 +8,4 @@ public class home {
     public void register(){
         reg.click();
     }
-
-
 }

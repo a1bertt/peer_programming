@@ -51,19 +51,21 @@ public class register {
     private WebElement loginsubmit;
 
     public void newuser(){
-        firstname.sendKeys("James");
-        lastname.sendKeys("Brown");
-        phone.sendKeys("07894564321");
-        email.sendKeys("Jamesb@hotmail.co.uk");
-        address.sendKeys("321 Barnell Road");
-        addressline2.sendKeys("I Feel Good");
-        city.sendKeys("Atlanta");
-        state.sendKeys("Georgia");
-        postcode.sendKeys("LT1 W59");
-        country.sendKeys("CANADA");
-        username.sendKeys("j.b.");
-        password.sendKeys("jamesB");
-        confirmPassword.sendKeys("jamesB");
+        Excel excel = new Excel();
+        excel.setRow(1);
+
+        firstname.sendKeys(excel.pullExcelData(0));
+        lastname.sendKeys(excel.pullExcelData(1));
+        phone.sendKeys(excel.pullExcelData(2));
+        email.sendKeys(excel.pullExcelData(3));
+        address.sendKeys(excel.pullExcelData(4));
+        city.sendKeys(excel.pullExcelData(5));
+        state.sendKeys(excel.pullExcelData(6));
+        postcode.sendKeys(excel.pullExcelData(7));
+        country.sendKeys(excel.pullExcelData(8));
+        username.sendKeys(excel.pullExcelData(9));
+        password.sendKeys(excel.pullExcelData(10));
+        confirmPassword.sendKeys(excel.pullExcelData(10));
         submit.click();
         signon.click();
         loginsubmit.click();
